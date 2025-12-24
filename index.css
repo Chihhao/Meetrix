@@ -39,7 +39,7 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.02);
     box-sizing: border-box;
     /* 預設長過渡：讓亮光熄滅時有拖曳殘影感 */
-    transition: background-color 1.5s ease; 
+    transition: background-color 0.5s ease; 
     z-index: 0;
 }
 
@@ -108,15 +108,17 @@
 }
 
 .action-card {
-    /* 微調：改為微透明背景 + 毛玻璃效果 */
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px);
-    color: var(--text-main);
+    /* 毛玻璃與微光效果：深色透光風格 */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
     width: 300px;
     padding: 40px 20px;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
     cursor: pointer;
     display: block;
     text-align: center;
@@ -124,30 +126,35 @@
 }
 
 .action-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2), 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .action-card .icon {
     font-size: 3rem;
     margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .action-card h3 {
     margin: 0 0 10px;
     font-size: 1.5rem;
-    color: var(--primary-color);
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .action-card p {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.8);
     margin-bottom: 20px;
     line-height: 1.5;
 }
 
 .btn-fake {
-    color: var(--primary-color);
+    color: #80cbc4; /* 淺綠色，在深色背景更清晰 */
     font-weight: 700;
+    text-shadow: 0 0 10px rgba(128, 203, 196, 0.4);
 }
 
 /* 卡片內清單 */
@@ -158,7 +165,7 @@
 }
 
 .action-card li {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
     margin: 6px 0;
     font-size: 1rem;
 }
