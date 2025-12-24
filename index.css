@@ -8,10 +8,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #009688 0%, #004d40 100%);
+    /* 優化背景：深色基底 + 放射光暈 */
+    background-color: #004d40;
+    background-image: 
+        radial-gradient(circle at 0% 0%, #26a69a 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, #00251a 0%, transparent 50%);
     color: #fff;
-    overflow-x: auto;
+    overflow-x: hidden;
     min-height: 100vh;
+    position: relative;
+}
+
+/* 新增：背景網格紋理 (呼應 Meetrix 矩陣感) */
+#page-landing::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* Section: Container */
@@ -20,6 +38,8 @@
     max-width: 900px;
     width: 100%;
     padding: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 /* 150% 放大（僅首頁容器） */
@@ -63,12 +83,14 @@
 }
 
 .action-card {
-    background: #fff;
+    /* 微調：改為微透明背景 + 毛玻璃效果 */
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
     color: var(--text-main);
     width: 300px;
     padding: 40px 20px;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
     display: block;
