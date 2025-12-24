@@ -1,0 +1,123 @@
+/* =========================================
+   Index (Landing) Page CSS
+   - 依賴 common.css 的 tokens/reset
+========================================= */
+
+/* Section: Page layout */
+#page-landing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #009688 0%, #004d40 100%);
+    color: #fff;
+    overflow-x: auto;
+    min-height: 100vh;
+}
+
+/* Section: Container */
+.landing-container {
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+    padding: 20px;
+}
+
+/* 150% 放大（僅首頁容器） */
+#page-landing .landing-container {
+    transform: scale(1.5);
+    transform-origin: center center;
+}
+
+/* Section: Branding */
+.brand-large {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.brand-slogan {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.slogan-emph {
+    color: #004d40;
+    font-weight: 800;
+    padding: 2px 4px;
+    border-radius: 6px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    margin-right: 6px;
+}
+
+/* Section: Action cards */
+.action-cards {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.action-card {
+    background: #fff;
+    color: var(--text-main);
+    width: 300px;
+    padding: 40px 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+}
+
+.action-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.action-card .icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.action-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.action-card p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.btn-fake {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* 卡片內清單 */
+.action-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.action-card li {
+    color: var(--text-secondary);
+    margin: 6px 0;
+    font-size: 1rem;
+}
+
+/* Section: Footer */
+.landing-footer {
+    margin-top: 50px;
+    opacity: 0.6;
+    font-size: 0.8rem;
+}
