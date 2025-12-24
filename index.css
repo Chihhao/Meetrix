@@ -134,8 +134,15 @@
 
 .action-card .icon {
     font-size: 3rem;
+    line-height: 1;
     margin-bottom: 20px;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* 微調：右側日曆圖示線條較密集，導致光暈疊加看起來較亮，在此稍微減弱以達成視覺平衡 */
+.card-vote .icon {
+    opacity: 0.9;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .action-card h3 {
