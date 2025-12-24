@@ -10,6 +10,7 @@
     <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect rx="12" width="64" height="64" fill="%23009688"/><rect x="8" y="14" width="48" height="12" fill="%23ffffff"/><rect x="12" y="30" width="12" height="12" fill="%23ffffff"/><rect x="26" y="30" width="12" height="12" fill="%23ffffff"/><rect x="40" y="30" width="12" height="12" fill="%23ffffff"/><rect x="12" y="44" width="12" height="12" fill="%23ffffff"/><rect x="26" y="44" width="12" height="12" fill="%23ffffff"/><rect x="40" y="44" width="12" height="12" fill="%23ffffff"/></svg>'>
 </head>
 <body id="page-landing">
+    <div id="matrix-bg"></div>
     <div class="landing-container">
         <div class="brand-large">Meetrix</div>
         <p class="brand-slogan"><span class="slogan-emph">矩陣式</span>極速媒合會議時間</p>
@@ -42,6 +43,57 @@
             本系統之表單內容可能涉及個人資料，僅限公司業務範圍內使用。
         </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bg = document.getElementById('matrix-bg');
+            const cellSize = 40; // 必須與 CSS 中的 width/height 一致
+
+            // 初始化網格
+            function initGrid() {
+                bg.innerHTML = '';
+                const cols = Math.ceil(window.innerWidth / cellSize);
+                const rows = Math.ceil(window.innerHeight / cellSize);
+                const total = cols * rows;
+
+                const fragment = document.createDocumentFragment();
+                for (let i = 0; i < total; i++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('matrix-cell');
+                    fragment.appendChild(cell);
+                }
+                bg.appendChild(fragment);
+            }
+
+            // 隨機呼吸效果
+            function breathe() {
+                const cells = bg.children;
+                if (cells.length === 0) return;
+                
+                // 隨機挑選一個格子
+                const idx = Math.floor(Math.random() * cells.length);
+                const cell = cells[idx];
+                
+                // 點亮並在隨機時間後熄滅
+                cell.classList.add('active');
+                setTimeout(() => {
+                    cell.classList.remove('active');
+                }, 1500 + Math.random() * 1500); // 亮起維持 1.5~3 秒
+            }
+
+            // 執行初始化與監聽
+            initGrid();
+            
+            // 視窗改變大小時重繪 (簡單防抖動可視需求加入)
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(initGrid, 200);
+            });
+
+            // 啟動呼吸循環 (每 100ms 嘗試點亮一個新格子)
+            setInterval(breathe, 100);
+        });
+    </script>
 </body>
 </html>
-

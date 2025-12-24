@@ -19,17 +19,41 @@
     position: relative;
 }
 
-/* 新增：背景網格紋理 (呼應 Meetrix 矩陣感) */
-#page-landing::before {
-    content: "";
+/* 新增：動態矩陣背景容器 */
+#matrix-bg {
     position: absolute;
     inset: 0;
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
     z-index: 0;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    pointer-events: auto; /* 允許滑鼠互動 */
+}
+
+/* 矩陣單元格 */
+.matrix-cell {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.02); /* 極細微的格線 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    box-sizing: border-box;
+    /* 預設長過渡：讓亮光熄滅時有拖曳殘影感 */
+    transition: background-color 1.5s ease; 
+    z-index: 0;
+}
+
+/* 滑鼠互動：瞬間亮起 */
+.matrix-cell:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* 柔和的亮光 */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* 輕微光暈 */
+    transition: background-color 0s; /* 無延遲，立即反應 */
+}
+
+/* 隨機呼吸效果：由 JS 觸發 */
+.matrix-cell.active {
+    background-color: rgba(255, 255, 255, 0.06);
+    transition: background-color 1s ease-in-out;
 }
 
 /* Section: Container */
@@ -40,6 +64,7 @@
     padding: 20px;
     position: relative;
     z-index: 1;
+    pointer-events: none; /* 讓滑鼠事件穿透容器，觸發背景互動 */
 }
 
 /* 150% 放大（僅首頁容器） */
@@ -95,6 +120,7 @@
     cursor: pointer;
     display: block;
     text-align: center;
+    pointer-events: auto; /* 恢復卡片的可點擊狀態 */
 }
 
 .action-card:hover {
